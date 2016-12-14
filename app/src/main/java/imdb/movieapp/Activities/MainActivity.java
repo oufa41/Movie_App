@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements MovieListFragment
         }
         moviewDetailFrame = (FrameLayout) findViewById(R.id.container_movies_detail);
         if (moviewDetailFrame != null) {
-            Log.i("welcome", "not null");
+
             tabletLayout = true;
         }
         appController = (AppController) getApplication();
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements MovieListFragment
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container_movies_list, movieListFragment)
                 .commit();
-        Log.i("oufa:", "1");
+
         moviesRequest();
     }
 
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements MovieListFragment
     }
 
     public void moviesRequest() {
-        Log.i("oufa:", "2");
+
         if (!isOnline()) {
             Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
         } else {
@@ -159,12 +159,11 @@ public class MainActivity extends AppCompatActivity implements MovieListFragment
                     try {
                         JSONObject jObj = new JSONObject(response);
                         JSONArray results = jObj.getJSONArray("results");
-                        Log.i("Results: ", results.toString());
                         Gson gson = new Gson();
-                        Log.i("oufa:", "3");
+
                         ArrayList<MovieResult> movies = gson.fromJson(results.toString(), new TypeToken<ArrayList<MovieResult>>() {
                         }.getType());
-                        Log.i("oufa:", "4");
+
                         movieListFragment.updateMoviesView(movies);
                     } catch (JSONException e) {
                         e.printStackTrace();

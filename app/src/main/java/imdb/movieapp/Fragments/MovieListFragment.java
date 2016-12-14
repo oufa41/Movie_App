@@ -73,23 +73,15 @@ public class MovieListFragment extends Fragment {
     }
 
     public void updateMoviesView(final ArrayList<MovieResult> movieResults) {
-        Log.i("oufa:","5");
+
         ArrayList<String> moviePostersPaths = new ArrayList<>();
         for (int i = 0; i < movieResults.size(); i++) {
             moviePostersPaths.add(movieResults.get(i).getPoster_path());
         }
-        Log.i("oufa:","6");
 
-        Log.i("results", "eh ba2a");
 
         moviesGridViewAdapter = new MoviesGridViewAdapter(getActivity(), moviePostersPaths);
-        Log.i("oufa: ",""+moviePostersPaths.size());
-        Log.i("oufa:","7");
-        for(int i=0;i<moviePostersPaths.size();i++){
-            Log.i("oufa:",""+moviePostersPaths.get(i));
-        }
         moviesGridView.setAdapter(moviesGridViewAdapter);
-        Log.i("oufa:","8");
         moviesGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -118,7 +110,6 @@ public class MovieListFragment extends Fragment {
                     try {
                         JSONObject jObj = new JSONObject(response);
                         JSONArray results = jObj.getJSONArray("results");
-                        Log.i("Results: ", results.toString());
                         Gson gson = new Gson();
                         ArrayList<MovieResult> movies = gson.fromJson(results.toString(), new TypeToken<ArrayList<MovieResult>>() {
                         }.getType());

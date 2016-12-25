@@ -211,5 +211,9 @@ public class MainActivity extends AppCompatActivity implements MovieListFragment
         }
     }
 
+    public void oufa(){
+        
+    }
+
 
 }
